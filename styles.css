@@ -27,3 +27,34 @@ button:disabled, button:disabled:hover{
     background-color: gray;
     cursor: default;
 }
+
+#colorPalette {
+    display: flex;
+    gap: 5px;
+    margin-bottom: -10px;
+}
+
+#colorPaletteContainer{
+    display: none;
+}
+
+.color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #ccc;
+    transition: transform 0.2s;
+}
+
+.color:hover {
+    transform: scale(1.2);
+}
+
+#startContainer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 1rem;
+   margin-bottom: -10px;
+}

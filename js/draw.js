@@ -1,6 +1,6 @@
 const draw = {};
 
-draw.path = (ctx,path,color="black") => {
+draw.path = (ctx,path,color) => {
     ctx.strokeStyle = color;
     ctx.lineWidth = 2;
     ctx.beginPath();
