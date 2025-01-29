@@ -77,6 +77,7 @@
                 instructions.innerHTML = `<strong>${data.student} </strong>, please draw a <strong>${nextLabel}</strong>`;
             } else {
                 sketchPadContainer.style.visibility = "hidden";
+                colorPaletteContainer.style.display = "none";
                 instructions.innerHTML = "Thank you!";
                 advanceBtn.innerHTML = "Save";
                 advanceBtn.onclick = save;
@@ -86,7 +87,6 @@
 
         function save() {
             advanceBtn.innerHTML = "Saving...";
-            colorPaletteContainer.style.display = "none";
             setTimeout(() => {
                 advanceBtn.style.display = "none";
                 const element = document.createElement("a");
