@@ -20,8 +20,6 @@ class SketchPad {
         this.reset();
         this.#addEventListeners();
     }
-    git commit -m "Added web as a submodule"
-    git push origin main
     
     setColor(newColor) {
         this.color = newColor;
