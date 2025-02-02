@@ -1,9 +1,10 @@
-const draw = require("../common/draw.js");
-const constants = require("../common/constants.js");
-const utils = require("../common/utils.js");
+const draw = require("../public/common/draw.js");
+const constants = require("../public/common/constants.js");
+const utils = require("../public/common/utils.js");
 const {createCanvas} = require("canvas");
 const canvas = createCanvas(400, 400);
 const ctx = canvas.getContext("2d");
+
 
 const fs = require("fs");
 

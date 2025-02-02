@@ -1,5 +1,5 @@
-const constants = require("../common/constants.js");
-const features = require("../common/features.js");
+const constants = require("../public/common/constants.js");
+const features = require("../public/common/features.js");
 // const utils = require("../common/utils.js");
 const fs = require("fs");
 

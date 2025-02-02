@@ -1,0 +1,38 @@
+<%- include("partials/_header") %>
+    <div id="chartConatiner"></div>
+    <div id="container" style="margin: 50px 0px 0px;"></div>
+    <script src="./common/js_objects/features.js"></script>
+    <script src="./common/constants.js"></script>
+    <script src="./common/utils.js"></script>
+    <script src="./js/display.js"></script>
+    <!-- <script src="https://www.gstatic.com/charts/loader.js"></script> -->
+    <script src="./charts/graphics.js"></script>
+    <script src="./charts/math.js"></script>
+    <script src="./charts/chart.js"></script>
+
+<script>
+    const {samples,featureNames} = features;
+    const groups = utils.groupBy(samples,"student_id");
+    for(let student_id in groups){
+        const samples = groups[student_id];
+        const studentName = samples[0].student_name;
+        createRow(container,studentName,samples);
+    }
+
+    const options = {
+        size:500,
+        axesLabels:featureNames,
+        styles:utils.styles,
+        transperancy:0.7,
+        icon:"image"
+    };
+   graphics.generateImages(utils.styles);
+   const chart = new Chart(
+        chartConatiner,
+        samples,
+        options,
+        handleClick
+   );
+   
+</script>
+<%- include("partials/_footer") %>
