@@ -9,6 +9,7 @@ body{
     display: flex;
     flex-direction: column;
     height: calc(100vh - 100px);
+    overflow-y: auto;
 }
 header{
     text-align: center;
@@ -80,14 +81,6 @@ button:disabled, button:disabled:hover{
 
 .color:hover {
     transform: scale(1.2);
-}
-
-#startContainer {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   gap: 1rem;
-   margin-bottom: -10px;
 }
 
 

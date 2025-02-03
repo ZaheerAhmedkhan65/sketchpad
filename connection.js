@@ -1,8 +1,7 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
-// Create a connection pool to the database
-const db = mysql.createPool({
+const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
@@ -11,13 +10,14 @@ const db = mysql.createPool({
   ssl: { rejectUnauthorized: true }  // Required for TiDB Cloud
 });
 
-db.getConnection((err, connection) => {
+
+db.connect((err) => {
   if (err) {
-    console.error('Error getting connection from the pool:', err);
-    return;
+    console.error('Database connection failed:', err);
+  } else {
+    console.log('Connected to database');
   }
-  console.log('Connected to the database');
-  connection.release();  // Release the connection back to the pool
 });
 
 module.exports = db;
+

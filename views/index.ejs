@@ -1,13 +1,9 @@
 <%- include("partials/_header") %>
     <div id="content">
         <div id="startContainer">
-            <div style="text-align: start; width: 75%;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                <input type="text" id="student" placeholder="Please type your name">
-                <span id="instructions"></span>
-                <button id="advanceBtn" onclick="start();">Start</button>
-                </div>
-            </div>  
+            <input type="text" id="student" placeholder="Please type your name">
+            <span id="instructions"></span>
+            <button id="advanceBtn" onclick="start();">Start</button>
         </div>
         <br>
         <div id="sketchPadContainer" style="visibility: hidden;">
@@ -35,7 +31,7 @@
             student.style.display = "none";
             sketchPadContainer.style.visibility = "visible";
             const label = labels[index];
-            instructions.innerHTML = `<p>Hi, <strong>${data.student}!</strong></p> <p>Please draw a <strong>${label}!</strong></p>`;
+            instructions.innerHTML = `<span>Hi,<strong>${data.student}!</strong> Please draw a <strong>${label}!</strong></span>`;
             advanceBtn.innerHTML = "Next";
             advanceBtn.onclick = next;
         }
