@@ -35,6 +35,7 @@ app.post('/save', (req, res) => {
   });
 });
 
+
 // Render the index page using EJS
 app.get('/', (req, res) => {
   res.render('index', { title: 'Sketch Pad' }); // Pass data to the EJS template

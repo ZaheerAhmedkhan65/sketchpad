@@ -50,15 +50,15 @@
                 instructions.innerHTML = `<strong>${data.student} </strong>, please draw a <strong>${nextLabel}</strong>`;
             } else {
                 sketchPadContainer.style.visibility = "hidden";
-                instructions.innerHTML = `Thank you! ${data.student} , your data has been saved.`;
+                instructions.innerHTML = `Thank you! ${data.student}.`;
                 advanceBtn.innerHTML = "Saved";
-                save();
+                save(data);
             }
         }
 
 
 
-        function save() {
+        function save(data) {
             advanceBtn.innerHTML = "Saving...";
             fetch('/save', {
                 method: 'POST',
@@ -83,4 +83,4 @@
         }
 
     </script>
-<%- include("partials/_footer") %>
+    <%- include("partials/_footer") %>
