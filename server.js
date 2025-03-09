@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
-const db = require('./connection');
+const db = require('./config/connection');
 const app = express();
 const port = 3000;
 
@@ -20,20 +20,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-// Endpoint to save user data
 app.post('/save', (req, res) => {
   const { student, session, drawings } = req.body;
 
   const query = 'INSERT INTO drawings (student, session, drawings) VALUES (?, ?, ?)';
-  db.query(query, [student, session, JSON.stringify(drawings)], (err, results) => {
+
+  db.getConnection((err, connection) => {
     if (err) {
-      console.error('Error saving data:', err);
-      res.status(500).send('Error saving data');
-      return;
+      console.error('Database connection error:', err);
+      return res.status(500).send('Database connection error');
     }
-    res.status(200).send('Data saved successfully');
+
+    connection.query(query, [student, session, JSON.stringify(drawings)], (queryErr, results) => {
+      connection.release(); // Release connection back to the pool
+
+      if (queryErr) {
+        console.error('Error saving data:', queryErr);
+        return res.status(500).send('Error saving data');
+      }
+      res.status(200).send('Data saved successfully');
+    });
   });
 });
+
 
 
 // Render the index page using EJS
