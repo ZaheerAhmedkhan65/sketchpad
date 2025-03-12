@@ -10,6 +10,9 @@ body{
     flex-direction: column;
     height: calc(100vh - 100px);
     overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    stroke-linecap: round;
 }
 header{
     text-align: center;
@@ -136,4 +139,15 @@ input[type="text"]{
 }
 .undoBtn{
    margin-top: 10px;
+}
+
+.alert{
+    position: fixed;
+    top: 8%;
+    right: 2%;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 2px black;
+    text-align: center;
 }

@@ -50,8 +50,10 @@
                 instructions.innerHTML = `<strong>${data.student} </strong>, please draw a <strong>${nextLabel}</strong>`;
             } else {
                 sketchPadContainer.style.visibility = "hidden";
-                instructions.innerHTML = `Thank you! ${data.student}.`;
-                advanceBtn.innerHTML = "Saved";
+                instructions.innerHTML = `Thank you! <strong> ${data.student}</strong> , for completing these drawings.<br>`;
+                advanceBtn.innerHTML = "Download Drawings";
+                advanceBtn.style.margin = "10px 0px 0px";
+                advanceBtn.onclick = () => saveDrawing(data);
                 save(data);
             }
         }
@@ -59,7 +61,6 @@
 
 
         function save(data) {
-            advanceBtn.innerHTML = "Saving...";
             fetch('/save', {
                 method: 'POST',
                 headers: {
@@ -69,17 +70,35 @@
             })
                 .then(response => response.text())
                 .then(message => {
-                    alert(message); // Show success message
-                    advanceBtn.innerHTML = "Saved";
-                    setTimeout(() => {
-                        window.location.href = "/"; // Redirect to the root path after 2 seconds
-                    }, 2000); // 2000 milliseconds = 2 seconds
+                    showAlert(`<strong>${data.student}</strong>, you have successfully completed given drawings!`);
+                    console.log(message);
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    advanceBtn.innerHTML = "Save";
                     alert('Error saving data');
                 });
+        }
+
+
+        function saveDrawing(data) {
+            if (data) {
+                const fileName = `${data.session}.json`;
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(new Blob([JSON.stringify(data)], { type: 'application/json' }));
+                a.download = fileName;
+                a.click();
+            }
+        }
+
+
+        function showAlert(message){
+             let alertBox = document.createElement("div");
+             alertBox.classList.add("alert");
+             alertBox.innerHTML = message;
+             document.body.appendChild(alertBox);
+             setTimeout(() => {
+                 alertBox.remove();
+             }, 5000);
         }
 
     </script>
