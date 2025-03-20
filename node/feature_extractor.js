@@ -1,7 +1,9 @@
 const constants = require("../public/common/constants.js");
-const features = require("../public/common/features.js");
+const featureFunctions = require("../public/common/featureFunctions.js");
 // const utils = require("../common/utils.js");
 const fs = require("fs");
+
+console.log("Extracting features...");
 
 const samples = JSON.parse(
     fs.readFileSync(constants.SAMPLES)
@@ -13,13 +15,11 @@ for(const sample of samples){
             constants.JSON_DIR + "/" + sample.id + ".json"
         )
     );
-    sample.point = [
-        features.getPathCount(paths),
-        features.getPointCount(paths)
-    ];
+    const functions = featureFunctions.inUse.map(f=>f.function);
+    sample.point=functions.map(f=>f(paths));
 }
 
-const featureNames = ["Path Count","Point Count"];
+const featureNames = featureFunctions.inUse.map(f=>f.name);
 
 fs.writeFileSync(constants.FEATURES,
     JSON.stringify({
@@ -37,3 +37,5 @@ fs.writeFileSync(constants.FEATURES_JS,
     `const features = 
     ${JSON.stringify({featureNames,samples})};`
 );
+
+console.log("Features extracted!");
