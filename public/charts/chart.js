@@ -263,6 +263,7 @@ class Chart{
             "rgba(255,255,255,0.7)",
             10000000
          )
+         
          ctx.beginPath();
          ctx.moveTo(...pixelLoc);
          ctx.lineTo(...math.remapPoint(
